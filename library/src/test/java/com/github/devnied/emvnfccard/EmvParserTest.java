@@ -400,20 +400,20 @@ public class EmvParserTest {
 		ProviderSelectPaymentEnvTest prov = new ProviderSelectPaymentEnvTest();
 		prov.setExpectedData("80CA9F1700");
 		prov.setReturnedData("9F 17 01 03 90 00");
-		int val = Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry");
+		int val = ((Integer)Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry")).intValue();
 		Assertions.assertThat(val).isEqualTo(3);
 
 		prov.setExpectedData("80CA9F1700");
 		prov.setReturnedData("90 00");
-		val = Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry");
+		val = ((Integer)Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry")).intValue();
 		Assertions.assertThat(val).isEqualTo(EmvParser.UNKNOW);
 
 		prov.setReturnedData(null);
-		val = Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry");
+		val = ((Integer)Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry")).intValue();
 		Assertions.assertThat(val).isEqualTo(EmvParser.UNKNOW);
 
 		prov.setReturnedData("8090");
-		val = Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry");
+		val = ((Integer)Whitebox.invokeMethod(new EmvParser(prov, true), EmvParser.class, "getLeftPinTry")).intValue();
 		Assertions.assertThat(val).isEqualTo(EmvParser.UNKNOW);
 	}
 
